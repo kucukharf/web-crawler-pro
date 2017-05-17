@@ -9,6 +9,10 @@ var _ = require('lodash'),
 	format = require('string-template'),
 	Archiver = require('archiver'),
 	config = require('./config'),
+	rimraf = require('rimraf'),
+	existsSync = fs.existsSync || path.existsSync;
+
+
 	WebCrawler = WebCrawler || {
 		_init: function(url) {
 			this.setPreOptions(url)
@@ -25,7 +29,7 @@ var _ = require('lodash'),
 			scraper(this.options).then(this._CrawlerCallback.bind(this));
 		},
 		_CrawlerCallback: function() {
-			this.copyFiles(['readme.md', 'package.json']);
+			this.copyFiles(['readme.md', 'package.json', 'index.js']);
 			this.makeArchive();
 			this.responseStatus(config.messages._FINISHED);
 		},
@@ -78,6 +82,16 @@ var _ = require('lodash'),
 			_.forEach(files, function(value) {
 				this.copyFile(config.files.resources + '/' + value, config.files.source + '/' + this.options.siteDirname + '/' + value)
 			}.bind(this));
+		},
+		resetFolders: function(){
+			var _willDeleteDistDirectories = [config.files.dist];
+				_.forEach(_willDeleteDistDirectories, function(value) {
+					rimraf(path.resolve(value, ''), function() {
+						if (!existsSync(value)) {
+							fs.mkdirSync(value);
+						}
+					});
+			});
 		},
 		copyFile: function(source, target) {
 			fs.createReadStream(source).pipe(fs.createWriteStream(target));

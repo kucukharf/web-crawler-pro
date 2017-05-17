@@ -4,6 +4,7 @@
   "description": "Sony web archive browser",
   "main": "index.js",
   "scripts": {
+    "open": "node index.js",
     "browse": "http-server -p 3000 -a localhost -o",
     "debug": "node index.js"
   },
