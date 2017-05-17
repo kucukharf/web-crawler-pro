@@ -23,6 +23,11 @@ module.exports = {
     {
         tld: 'co.uk',
         domain: 'sony',
+        subdomain: 'uat-pdp'
+    },
+    {
+        tld: 'co.uk',
+        domain: 'sony',
         subdomain: 'www'
     }]
 }

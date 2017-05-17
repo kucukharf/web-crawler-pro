@@ -13,7 +13,7 @@ var _ = require('lodash'),
 	existsSync = fs.existsSync || path.existsSync;
 
 
-	WebCrawler = WebCrawler || {
+	WebCrawler = {
 		_init: function(url) {
 			this.setPreOptions(url)
 			return this._checkURLisValid(url) ? this._startCrawler(url) : this.responseStatus(config.messages._INVALID_URL);
