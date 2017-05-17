@@ -79,6 +79,7 @@ var _ = require('lodash'),
 			archive.finalize();
 		},
 		copyFiles: function(files) {
+			//console.log(files);
 			_.forEach(files, function(value) {
 				this.copyFile(config.files.resources + '/' + value, config.files.source + '/' + this.options.siteDirname + '/' + value)
 			}.bind(this));
@@ -94,6 +95,7 @@ var _ = require('lodash'),
 			});
 		},
 		copyFile: function(source, target) {
+			//console.log(source, target);
 			fs.createReadStream(source).pipe(fs.createWriteStream(target));
 		}
 	}
