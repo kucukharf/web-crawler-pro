@@ -1,0 +1,16 @@
+{
+  "name": "web-sony-archive",
+  "version": "0.0.1",
+  "description": "Sony web archive browser",
+  "main": "index.js",
+  "scripts": {
+    "browse": "http-server -p 3000 -a localhost -o",
+    "debug": "node index.js"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "open": "0.0.5"
+  },
+  "author": "Burak Arslan",
+  "license": "MIT"
+}

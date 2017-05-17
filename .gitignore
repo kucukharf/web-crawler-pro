@@ -1,0 +1,9 @@
+.idea
+node_modules
+npm-debug.log
+coverage
+test/e2e/results
+archive
+.DS_Store
+.Spotlight-V100
+.Trashes
