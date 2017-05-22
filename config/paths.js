@@ -139,6 +139,24 @@ module.exports = {
             "active": true,
             "path": [
                 "electronics",
+                "home-theater",
+                "t",
+                "sound-bars"
+            ]
+        },
+        {
+            "active": true,
+            "path": [
+                "electronics",
+                "audio-home-cinema",
+                "t",
+                "sound-bars"
+            ]
+        },
+        {
+            "active": true,
+            "path": [
+                "electronics",
                 "multimedia-projectors",
                 "t",
                 "home-cinema-projectors"
@@ -255,6 +273,14 @@ module.exports = {
         {
             "active": true,
             "path": [
+                "digital-paper-systems",
+                "t",
+                "digital-paper-notepad"
+            ]
+        },
+        {
+            "active": true,
+            "path": [
                 "electronics",
                 "camcorders",
                 "t",
@@ -325,6 +351,15 @@ module.exports = {
             ]
         },
         {
+            "path": [
+                "electronics",
+                "av-cables",
+                "t",
+                "video-cables"
+            ]
+        },
+        {
+            "active": true,
             "path": [
                 "electronics",
                 "av-cables",

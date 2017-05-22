@@ -12,7 +12,6 @@ var _ = require('lodash'),
 	rimraf = require('rimraf'),
 	existsSync = fs.existsSync || path.existsSync;
 
-
 	WebCrawler = {
 		_init: function(url) {
 			this.resetFolders();
@@ -86,6 +85,12 @@ var _ = require('lodash'),
 			}.bind(this));
 		},
 		resetFolders: function(){
+			var dir = './' + config.files.directory;
+				if (!fs.existsSync(dir)){
+    				fs.mkdirSync(dir);
+				}
+				
+
 			var _willDeleteDistDirectories = [config.files.dist];
 				_.forEach(_willDeleteDistDirectories, function(value) {
 					rimraf(path.resolve(value, ''), function() {

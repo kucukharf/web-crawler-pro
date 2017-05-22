@@ -38,6 +38,11 @@ _prompt.get({
 
 function deleteFolder(){
 	//var _willDeleteDirectories = _.values(config);
+	var dir = './' + config.files.directory;
+
+	if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+	}
 	var _willDeleteDirectories = [config.files.source, config.files.dist];
 		_.forEach(_willDeleteDirectories, function(value) {
 			rimraf(path.resolve(value, ''), function() {

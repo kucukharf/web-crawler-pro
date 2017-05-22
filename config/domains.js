@@ -29,5 +29,10 @@ module.exports = {
         tld: 'co.uk',
         domain: 'sony',
         subdomain: 'www'
+    },
+    {
+        tld: 'com',
+        domain: 'sony',
+        subdomain: 'www'
     }]
 }

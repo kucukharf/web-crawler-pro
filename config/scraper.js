@@ -1,20 +1,20 @@
 var lib             = require('../resources/lib');
 module.exports = {
-  recursive : false,
-  maxRecursiveDepth : 4,
+  recursive : true,
+  maxRecursiveDepth : 2,
   prettifyUrls: true,
-  maxDepth:4,
+  maxDepth:2,
   sources:[
-    {selector: '.hero-img', attr: 'data-src-desktop-highres'},
-    {selector: '.st-image', attr: 'data-src-desktop-highres'},
-    {selector: '.iq-img', attr: 'data-src-desktop-highres'},
+    {selector: '.hero-img', attr: 'data-src-desktop-highres', type:'imgSet'},
+    {selector: '.st-image', attr: 'data-src-desktop-highres', type:'imgSet'},
+    {selector: '.iq-img', attr: 'data-src-desktop-highres', type:'imgSet'},
     {selector: 'img.product-logo-overlay', attr:'src'},
     {selector: 'link[rel="stylesheet"]', attr: 'href'},
     {selector: 'a.product-link-to-pdp', attr: 'href'},
     {selector: 'script', attr: 'src'}
   ],
   subdirectories: [
-    {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.pjpeg','.png-alpha','.jpeg']},
+    {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.pjpeg','.png-alpha','.jpeg', '.webp']},
     {directory: 'assets/js', extensions: ['.js']},
     {directory: 'assets/css', extensions: ['.css']},
     {directory: 'assets/others', extensions: ['.cur']},
