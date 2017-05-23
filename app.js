@@ -13,10 +13,10 @@ var _ = require('lodash'),
 	existsSync = fs.existsSync || path.existsSync;
 
 	WebCrawler = {
-		_init: function(url) {
+		_init: function(url, options) {
 			this.resetFolders();
-			this.setPreOptions(url)
-			return this._checkURLisValid(url) ? this._startCrawler(url) : this.responseStatus(config.messages._INVALID_URL);
+			this.setPreOptions(url);
+			return this._checkURLisValid(url) ? this._startCrawler(url,options) : this.responseStatus(config.messages._INVALID_URL);
 		},
 		_checkURLisValid: function(suspect) {
 			return validUrl.isUri(suspect) ? true : false;
@@ -24,8 +24,8 @@ var _ = require('lodash'),
 		setPreOptions(){
 			this.responseStatus(config.messages._SET_PRE_OPTIONS);
 		},
-		_startCrawler(url) {
-			this._setDefaultOptions(url);
+		_startCrawler(url, options) {
+			this._setDefaultOptions(url, options);
 			scraper(this.options).then(this._CrawlerCallback.bind(this));
 		},
 		_CrawlerCallback: function() {
@@ -33,9 +33,10 @@ var _ = require('lodash'),
 			this.makeArchive();
 			this.responseStatus(config.messages._FINISHED);
 		},
-		_setDefaultOptions: function(url) {
+		_setDefaultOptions: function(url, options) {
 			var siteDirname = this.getSiteDirname(url);
 			var siteFullPath = this.getSiteFullPath(siteDirname);
+			config.scraper = _.extend({}, config.scraper, options);
 			var agent = _.findIndex(config.agents.list, function(agent) { return agent.title == 'Chrome 41.0 Linux'; });
 
 			this.options = _.extend({}, config.scraper, {
