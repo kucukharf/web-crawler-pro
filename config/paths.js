@@ -9,6 +9,20 @@ module.exports = {
         {
             "active": true,
             "path": [
+                "en",
+                "all-electronics"
+            ]
+        },
+        {
+            "active": true,
+            "path": [
+                "fr",
+                "all-electronics"
+            ]
+        },
+        {
+            "active": true,
+            "path": [
                 "electronics",
                 "tv",
                 "t",

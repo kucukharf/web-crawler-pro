@@ -9,6 +9,6 @@ var _entryOptions = {
 		maxRecursiveDepth : _entryOPT_maxRecursiveDepth,
 		maxDepth:_entryOPT_maxDepth
 	};
-	console.log(_entryOptions);
 
+	
 	_crawler._init(_entryURL, _entryOptions);
