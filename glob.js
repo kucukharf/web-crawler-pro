@@ -1,4 +1,4 @@
-var glob = require('glob-fs');
+
 var config = require('./config');
 var _ = require('lodash');
 var Promise = require('bluebird');
@@ -7,22 +7,30 @@ var path = require('path');
 var chalk = require('chalk');
 var rimraf = require('rimraf');
 var existsSync = fs.existsSync || path.existsSync;
+var glob = require('glob');
+
+var directory = 'archive/source/www.sony.ca-2017_05_25-16:48:48:795'
 
 
-var path = 'archive/source/www.sony.ca-2017_05_25-13:14:07:841'
+// fs.readdir(directory, function(err, files) {
+//     if (err) return console.error(err);
+//     var cssFiles = files.filter( function(file){
+//     		return path.extname(file).toLowerCase() === '.css'
+//     });
+
+//     console.log(cssFiles);
+//  });
+
+
 
 var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
 
 var files = {};
+
 _.each(extensions, function(type) {
-	files[type] = glob({
-		gitignore: false
-	}).readdirSync(path + '/**/*.' + type);
+	files[type] = glob.sync(directory + '/**/*.' + type, null);
+	
 });
-
-
-//console.log(files);
-
 
 var reportGroups = {
 	documents: {
@@ -56,23 +64,3 @@ var summary = chalk.green(
 	'\n \n';
 	
 console.log(summary);
-
-//console.log('Site snapshot for sony.com/all-electronics');
-//console.log(reportGroups.documents.total + ' documents');
-//console.log(reportGroups.images.total + ' images');
-//console.log(reportGroups.assets.total + ' assets');
-//console.log(reportGroups.documents.total + reportGroups.assets.total + reportGroups.images.total + ' assets are fetched');
-
-
-/*
-Site snapshot for sony.com/all-electronics
-51.312 documents
-23.456 images
-328 assets fetched
-
-
-
-Site snapshot for sony.com/all-electronics
-51.312 documents
-23.456 images
-328 assets fetched */
