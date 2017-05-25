@@ -10,6 +10,8 @@ var _ = require('lodash'),
 	Archiver = require('archiver'),
 	config = require('./config'),
 	rimraf = require('rimraf'),
+	glob = require('glob-fs'),
+	chalk = require('chalk'),
 	existsSync = fs.existsSync || path.existsSync;
 
 	WebCrawler = {
@@ -65,7 +67,9 @@ var _ = require('lodash'),
 			return domain + '-' + timestamp('YYYY_MM_DD-HH:mm:ss:ms');
 		},
 		makeArchive: function() {
+			_self = this;
 			var output = fs.createWriteStream(config.files.dist + '/' + this.options.siteDirname + '.zip');
+			console.log(this.getDistSummary(config.files.directory + /source/ + this.options.siteDirname));
 			var archive = Archiver('zip', {
 				zlib: {
 					level: 9
@@ -74,6 +78,10 @@ var _ = require('lodash'),
 			output.on('close', function() {
 				console.log(archive.pointer() + ' total bytes');
 				console.log('archiver has been finalized and the output file descriptor has closed.');
+
+				rimraf(path.resolve(config.files.directory + /source/ + _self.options.siteDirname, ''), function(){
+					console.log('source directory cleaned');
+				});
 			});
 			archive.pipe(output);
 			archive.directory(config.files.source + '/' + this.options.siteDirname + '/', false);
@@ -84,6 +92,49 @@ var _ = require('lodash'),
 			_.forEach(files, function(value) {
 				this.copyFile(config.files.resources + '/' + value, config.files.source + '/' + this.options.siteDirname + '/' + value)
 			}.bind(this));
+		},
+		getDistSummary:function(path){
+				var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
+
+				var files = {};
+				_.each(extensions, function(type) {
+					files[type] = glob({
+						gitignore: false
+					}).readdirSync(path + '/**/*.' + type);
+				});
+
+				var reportGroups = {
+					documents: {
+						types: ['html', 'js', 'css', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'cur'],
+						total: null
+					},
+					images: {
+						types: ['webp', 'png', 'jpg', 'jpeg', 'svg', 'pjpeg', 'png-alpha'],
+						total: null
+					},
+				}
+
+				var total = {};
+
+				_.each(reportGroups, function(group) {
+					var total = 0;
+					_.each(group.types, function(val) {
+						total += files[val].length;
+					})
+					group.total = total;
+				});
+
+				var url = this.options.urls[0];
+
+				var summary = chalk.green(
+					'\n' + 'Site snapshot is generated for ' + '\t' + chalk.yellow.bold( ' ' + url + ' ' ) + 
+					'\n' +
+					'\n \t' + chalk.blue.bold(reportGroups.documents.total) + ' \t \t \t' + chalk.red(' documents') +
+					'\n \t' + chalk.blue.bold(reportGroups.images.total) + '\t \t \t' + chalk.red(' images ') +
+					'\n \t' + chalk.blue.bold(reportGroups.documents.total + reportGroups.images.total) + ' \t \t \t' + chalk.red(' assets fetched ')) +
+					'\n \n';
+					
+				return summary;
 		},
 		resetFolders: function(){
 			var dir = './' + config.files.directory;

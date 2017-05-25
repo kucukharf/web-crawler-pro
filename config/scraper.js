@@ -1,9 +1,9 @@
 var lib             = require('../resources/lib');
 module.exports = {
-  recursive : true,
-  maxRecursiveDepth : 2,
+  recursive : false,
+  maxRecursiveDepth : 1,
   prettifyUrls: true,
-  maxDepth:2,
+  maxDepth:1,
   sources:[
     {selector: '.hero-img', attr: 'data-src-desktop-highres', type:'imgSet'},
     {selector: '.st-image', attr: 'data-src-desktop-highres', type:'imgSet'},
