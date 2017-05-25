@@ -46,8 +46,8 @@
     },
     "scripts": {
         "clean": "node clean.js",
-        "crawl-cl": "node --max_old_space_size=6144 index.js",
-        "crawl": "export DEBUG=website-scraper*; node --max_old_space_size=6144 index.js",
+        "crawl-cl": "node --max_old_space_size=4096 index.js",
+        "crawl": "export DEBUG=website-scraper*; node --max_old_space_size=4096 index.js",
         "eslint": "eslint lib/** index.js",
         "load": "node bar.js",
         "start": "node index.js",
