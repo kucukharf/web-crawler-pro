@@ -35,7 +35,7 @@ module.exports = {
         domain: 'sony',
         subdomain: 'www'
     },
-    {
+    {  
         tld: 'ca',
         domain: 'sony',
         subdomain: 'www'

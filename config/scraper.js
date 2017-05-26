@@ -1,9 +1,9 @@
 var lib             = require('../resources/lib');
 module.exports = {
-  recursive : false,
-  maxRecursiveDepth : 1,
+  recursive : true,
+  maxRecursiveDepth : 6,
   prettifyUrls: true,
-  maxDepth:1,
+  maxDepth:6,
   sources:[
     {selector: '.hero-img', attr: 'data-src-desktop-highres', type:'imgSet'},
     {selector: '.st-image', attr: 'data-src-desktop-highres', type:'imgSet'},
@@ -20,7 +20,7 @@ module.exports = {
     {directory: 'assets/others', extensions: ['.cur']},
     {directory: 'assets/fonts', extensions: ['.woff','.ttf','.eot', '.woff2', '.otf', '.svg']}
   ],
-  urlFilter: function(_url){ 
+  urlFilter: function(_url){
     urlState = lib.utils.checkUrlState(_url);
     return urlState;
   }

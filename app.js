@@ -16,7 +16,6 @@ var _ = require('lodash'),
 
 WebCrawler = {
 	_init: function(url, options) {
-		console.log(url);
 		this.resetFolders();
 		this.setPreOptions(url);
 		return this._checkURLisValid(url) ? this._startCrawler(url, options) : this.responseStatus(config.messages._INVALID_URL);

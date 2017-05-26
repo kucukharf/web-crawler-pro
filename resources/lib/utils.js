@@ -24,12 +24,12 @@ var __URL           = require('url');
 
 			//console.log('finded Index for exclude:', pathIndex);
 			var pathStatus =  pathIndex > -1 ? true : false;
-			//console.log('ps:',pathStatus);
+			console.log('ps:',pathStatus);
 			domainStatus = (_.findIndex(domains.whitelist, urlInfo) || _.findIndex(domains.whitelist, urlInfo))  > -1 ? true : false;
-			//console.log('ds:',domainStatus);
+			console.log('ds:',domainStatus);
 			status = (domainStatus && pathStatus) ? true : false;
 			//console.log('status:',status);
-			//console.log(_url, status);
+			console.log(_url, status);
 			return status;
 		}
 	}
