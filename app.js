@@ -16,6 +16,7 @@ var _ = require('lodash'),
 
 WebCrawler = {
 	_init: function(url, options) {
+		console.log(url);
 		this.resetFolders();
 		this.setPreOptions(url);
 		return this._checkURLisValid(url) ? this._startCrawler(url, options) : this.responseStatus(config.messages._INVALID_URL);
@@ -63,8 +64,11 @@ WebCrawler = {
 		return path.resolve(config.files.source, siteDirname);
 	},
 	getSiteDirname: function(siteUrl) {
+		var str = "Visit Microsoft!";
+		var res = str.replace("Microsoft", "W3Schools");
 		var urlObj = URL.parse(siteUrl);
-		var domain = urlObj.host;
+		pathIdentifier = urlObj.pathname === '/' ?  '' : urlObj.pathname.replace(/\//g, '-')
+		var domain = urlObj.host + pathIdentifier;
 		//@timestamp pattern(YYYY MM DD HH mm ss ms) :  >>> example : '2015_04_01-19:52:33:738'
 		return domain + '-' + timestamp('YYYY_MM_DD-HH:mm:ss:ms');
 	},
@@ -96,7 +100,7 @@ WebCrawler = {
 		}.bind(this));
 	},
 	getDistSummary: function(directory) {
-
+		//console.log(this.options);
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
 
 		var files = {};
@@ -127,7 +131,7 @@ WebCrawler = {
 			group.total = total;
 		});
 
-		var url = 'sony.com/all-electronics';
+		var url = this.options.urls[0];
 
 		var summary = chalk.green(
 				'\n' + 'Site snapshot is generated for ' + '\t' + chalk.yellow.bold(' ' + url + ' ') +
