@@ -384,12 +384,8 @@ module.exports = {
     ],
     blacklist: [
         {
-            path: ['electronics', 'headphones', 't', 'headband-headphones' ],
+            path: ['locale-selector'],
             active: true
-        },
-        {
-            path: ['all-electronics'],
-            active: false
         }
     ]
 }
