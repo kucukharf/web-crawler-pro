@@ -58,7 +58,7 @@ WebCrawler = {
 		});
 	},
 	responseStatus: function(type) {
-		//console.log(type);
+		console.log(type);
 	},
 	getSiteFullPath: function(siteDirname) {
 		return path.resolve(config.files.source, siteDirname);
@@ -90,32 +90,26 @@ WebCrawler = {
 		output.on('close', function() {
 			console.log(archive.pointer() + ' total bytes');
 			console.log('archiver has been finalized and the output file descriptor has closed.');
-
-			//rimraf(path.resolve(config.files.directory + /source/ + _self.options.siteDirname, ''), function(){
-			//	console.log('source directory cleaned');
-			//});
+			rimraf(path.resolve(config.files.directory + /source/ + _self.options.siteDirname, ''), function(){
+				console.log('source directory cleaned');
+			});
 		});
 		archive.pipe(output);
 		archive.directory(config.files.source + '/' + this.options.siteDirname + '/', false);
 		archive.finalize();
 	},
 	copyFiles: function(files) {
-		//console.log(files);
 		_.forEach(files, function(value) {
 			this.copyFile(config.files.resources + '/' + value, config.files.source + '/' + this.options.siteDirname + '/' + value)
 		}.bind(this));
 	},
 	getDistSummary: function(directory) {
-		//console.log(this.options);
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
-
 		var files = {};
-
 		_.each(extensions, function(type) {
 			files[type] = glob.sync(directory + '/**/*.' + type, null);
 
 		});
-
 		var reportGroups = {
 			documents: {
 				types: ['html', 'js', 'css', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'cur'],
@@ -126,9 +120,7 @@ WebCrawler = {
 				total: null
 			},
 		}
-
 		var total = {};
-
 		_.each(reportGroups, function(group) {
 			var total = 0;
 			_.each(group.types, function(val) {
@@ -136,29 +128,15 @@ WebCrawler = {
 			})
 			group.total = total;
 		});
-
 		var url = this.options.urls[0];
-
 		var urlMessage = 'Site snapshot is generated for ' + url;
 		var totalDocuments = reportGroups.documents.total + ' documents';
 		var totalImages = reportGroups.images.total + ' images';
 		var totalAssets = reportGroups.images.total + reportGroups.images.total + ' assets fetched';
-
 		var summary = {
 			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
 		};
-
 		return summary;
-		
-		// var textSummary = chalk.green(
-		// 		'\n' + 'Site snapshot is generated for ' + '\t' + chalk.yellow.bold(' ' + url + ' ') +
-		// 		'\n' +
-		// 		'\n \t' + chalk.blue.bold(reportGroups.documents.total) + ' \t \t \t' + chalk.red(' documents') +
-		// 		'\n \t' + chalk.blue.bold(reportGroups.images.total) + '\t \t \t' + chalk.red(' images ') +
-		// 		'\n \t' + chalk.blue.bold(reportGroups.documents.total + reportGroups.images.total) + ' \t \t \t' + chalk.red(' assets fetched ')) +
-		// 	'\n \n';
-
-		// return textSummary;
 	},
 	resetFolders: function() {
 		var dir = './' + config.files.directory;
@@ -177,7 +155,6 @@ WebCrawler = {
 		});
 	},
 	copyFile: function(source, target) {
-		//console.log(source, target);
 		fs.createReadStream(source).pipe(fs.createWriteStream(target));
 	}
 }
