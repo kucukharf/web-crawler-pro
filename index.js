@@ -6,7 +6,7 @@ var _crawler = require('./app'),
 	cheerio = require('cheerio'),
 	_entryURL = process.env.npm_config_url || false;
 _entryURL = process.env.npm_config_url || false;
-_entryOPT_recursive = process.env.npm_config_recursive ? process.env.npm_config_recursive : true;
+_entryOPT_recursive = process.env.npm_config_recursive ? process.env.npm_config_recursive : false;
 _entryOPT_maxRecursiveDepth = process.env.npm_config_maxRecursiveDepth ? process.env.npm_config_maxRecursiveDepth : 6;
 _entryOPT_maxDepth = process.env.npm_config_maxDepth ? process.env.npm_config_maxDepth : 6;
 
@@ -15,6 +15,8 @@ var _entryOptions = {
 	maxRecursiveDepth: _entryOPT_maxRecursiveDepth,
 	maxDepth: _entryOPT_maxDepth
 };
+
+console.log(_entryOptions)
 
 var urls;
 

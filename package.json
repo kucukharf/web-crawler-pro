@@ -11,6 +11,7 @@
     "fs-extra": "^3.0.0",
     "glob": "^7.1.2",
     "he": "^1.1.0",
+    "jsonfile": "^3.0.0",
     "lodash": "^4.11.1",
     "normalize-url": "^1.5.3",
     "parse-domain": "^1.1.0",

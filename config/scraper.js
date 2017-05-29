@@ -1,7 +1,7 @@
 var lib             = require('../resources/lib');
 
 module.exports = {
-  recursive : true,
+  recursive : false,
   maxRecursiveDepth : 6,
   prettifyUrls: true,
   filenameGenerator: 'byType',

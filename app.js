@@ -12,6 +12,7 @@ var _ = require('lodash'),
 	rimraf = require('rimraf'),
 	glob = require('glob'),
 	chalk = require('chalk'),
+	jsonfile = require('jsonfile'),
 	existsSync = fs.existsSync || path.existsSync;
 
 WebCrawler = {
@@ -74,7 +75,13 @@ WebCrawler = {
 	makeArchive: function() {
 		_self = this;
 		var output = fs.createWriteStream(config.files.dist + '/' + this.options.siteDirname + '.zip');
-		console.log(this.getDistSummary(config.files.directory + /source/ + this.options.siteDirname));
+		var notificationFile = fs.createWriteStream(config.files.dist + '/notification.json');
+		var notification = 'archive/dist/notification.json';
+		jsonfile.spaces = 2;
+		jsonfile.writeFile(notification, this.getDistSummary(config.files.directory + /source/ + this.options.siteDirname), function (err) {
+		 console.log("dist/notification.json is created for slack");
+		})	
+
 		var archive = Archiver('zip', {
 			zlib: {
 				level: 9
@@ -132,15 +139,26 @@ WebCrawler = {
 
 		var url = this.options.urls[0];
 
-		var summary = chalk.green(
-				'\n' + 'Site snapshot is generated for ' + '\t' + chalk.yellow.bold(' ' + url + ' ') +
-				'\n' +
-				'\n \t' + chalk.blue.bold(reportGroups.documents.total) + ' \t \t \t' + chalk.red(' documents') +
-				'\n \t' + chalk.blue.bold(reportGroups.images.total) + '\t \t \t' + chalk.red(' images ') +
-				'\n \t' + chalk.blue.bold(reportGroups.documents.total + reportGroups.images.total) + ' \t \t \t' + chalk.red(' assets fetched ')) +
-			'\n \n';
+		var urlMessage = 'Site snapshot is generated for ' + url;
+		var totalDocuments = reportGroups.documents.total + ' documents';
+		var totalImages = reportGroups.images.total + ' images';
+		var totalAssets = reportGroups.images.total + reportGroups.images.total + ' assets fetched';
+
+		var summary = {
+			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
+		};
 
 		return summary;
+		
+		// var textSummary = chalk.green(
+		// 		'\n' + 'Site snapshot is generated for ' + '\t' + chalk.yellow.bold(' ' + url + ' ') +
+		// 		'\n' +
+		// 		'\n \t' + chalk.blue.bold(reportGroups.documents.total) + ' \t \t \t' + chalk.red(' documents') +
+		// 		'\n \t' + chalk.blue.bold(reportGroups.images.total) + '\t \t \t' + chalk.red(' images ') +
+		// 		'\n \t' + chalk.blue.bold(reportGroups.documents.total + reportGroups.images.total) + ' \t \t \t' + chalk.red(' assets fetched ')) +
+		// 	'\n \n';
+
+		// return textSummary;
 	},
 	resetFolders: function() {
 		var dir = './' + config.files.directory;
