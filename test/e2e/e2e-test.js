@@ -1,5 +1,5 @@
 var should = require('should');
-var scrape = require('../../index');
+var scrape = require('../../lib/index');
 var URL = require('url');
 var fs = require('fs-extra');
 var _ = require('lodash');

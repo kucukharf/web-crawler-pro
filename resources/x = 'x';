@@ -1,5 +1,0 @@
-x = 'x';
-while (1){ 
-     x = ''+x+x; // string context
-     console.log(x.length);
-}
