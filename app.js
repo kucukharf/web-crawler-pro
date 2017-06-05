@@ -6,12 +6,12 @@ var _ = require('lodash'),
 	validUrl = require('valid-url'),
 	scraper = require('./lib'),
 	timestamp = require('time-stamp'),
+	lib    = require('./resources/lib'),
 	format = require('string-template'),
 	Archiver = require('archiver'),
 	config = require('./config'),
 	rimraf = require('rimraf'),
 	glob = require('glob'),
-	chalk = require('chalk'),
 	jsonfile = require('jsonfile'),
 	existsSync = fs.existsSync || path.existsSync;
 
@@ -22,7 +22,7 @@ WebCrawler = {
 		return this._checkURLisValid(url) ? this._startCrawler(url, options) : this.responseStatus(config.messages._INVALID_URL);
 	},
 	_checkURLisValid: function(suspect) {
-		return validUrl.isUri(suspect) ? true : false;
+		return (validUrl.isUri(suspect) && lib.utils.checkRequestState(suspect)) ? true : false;
 	},
 	setPreOptions() {
 		this.responseStatus(config.messages._SET_PRE_OPTIONS);
@@ -32,6 +32,17 @@ WebCrawler = {
 		scraper(this.options).then(this._CrawlerCallback.bind(this));
 	},
 	_CrawlerCallback: function() {
+		this.checkDirectoryIsExist() ? this.createDirectory() : this.responseStatus(config.messages._NO_DIRECTORY);
+		
+	},
+	checkDirectoryIsExist: function(){
+		if (!existsSync(path.resolve(config.files.directory + /source/ + this.options.siteDirname, ''))) { 
+			return false;
+		} else {
+			return true;
+		}
+	},
+	createDirectory: function(){
 		this.copyFiles(['readme.md', 'package.json', 'index.js']);
 		this.makeArchive();
 		this.responseStatus(config.messages._FINISHED);
@@ -64,8 +75,6 @@ WebCrawler = {
 		return path.resolve(config.files.source, siteDirname);
 	},
 	getSiteDirname: function(siteUrl) {
-		var str = "Visit Microsoft!";
-		var res = str.replace("Microsoft", "W3Schools");
 		var urlObj = URL.parse(siteUrl);
 		pathIdentifier = urlObj.pathname === '/' ?  '' : urlObj.pathname.replace(/\//g, '-')
 		var domain = urlObj.host + pathIdentifier;

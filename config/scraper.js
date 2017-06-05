@@ -1,11 +1,9 @@
 var lib             = require('../resources/lib');
+var chalk           = require('chalk');
 
 module.exports = {
-  recursive : false,
-  maxRecursiveDepth : 6,
   prettifyUrls: true,
   filenameGenerator: 'byType',
-  maxDepth:6,
   sources:[
     {selector: '.hero-img', attr: 'data-src-desktop-highres', type:'imgSet'},
     {selector: '.st-image', attr: 'data-src-desktop-highres', type:'imgSet'},
@@ -40,7 +38,8 @@ module.exports = {
   },
   urlFilter: function(_url){
     urlState = lib.utils.checkUrlState(_url);
-    console.log(_url, urlState);
+    urlState ? console.log(chalk.green.bold(_url) + ' . ',chalk.green.bold(urlState)) : console.log(_url + ' . ',chalk.red(urlState));
     return urlState;
   }
 };
+
