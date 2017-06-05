@@ -8,7 +8,7 @@ var _crawler = require('./app'),
 	_entryURL = process.env.npm_config_url || false;
 _entryURL = process.env.npm_config_url || false;
 _entryOPT_recursive = process.env.npm_config_recursive ? process.env.npm_config_recursive : false;
-_entryOPT_maxRecursiveDepth = process.env.npm_config_maxRecursiveDepth ? process.env.npm_config_maxRecursiveDepth : 4;
+_entryOPT_maxRecursiveDepth = process.env.npm_config_maxRecursiveDepth ? process.env.npm_config_maxRecursiveDepth : 3;
 _entryOPT_maxDepth = process.env.npm_config_maxDepth ? process.env.npm_config_maxDepth : 4;
 
 var _entryOptions = {

@@ -17,6 +17,7 @@
     "parse-domain": "^1.1.0",
     "prompt": "^1.0.0",
     "request": "^2.42.0",
+    "request-promise": "^4.2.1",
     "rimraf": "^2.6.1",
     "srcset": "^1.0.0",
     "string-template": "^1.0.0",
