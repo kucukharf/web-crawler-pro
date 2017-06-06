@@ -11,7 +11,8 @@ module.exports = {
     {selector: 'img.product-logo-overlay', attr:'src'},
     {selector: 'link[rel="stylesheet"]', attr: 'href'},
     {selector: 'a.product-link-to-pdp', attr: 'href'},
-    {selector: 'script', attr: 'src'}
+    {selector: 'script', attr: 'src'},
+    {selector: 'button.tab', attr:'data-tab-url'}
   ],
   subdirectories: [
     {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.pjpeg','.png-alpha','.jpeg', '.webp']},
