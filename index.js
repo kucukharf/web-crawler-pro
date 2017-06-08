@@ -22,11 +22,17 @@ var urls;
 var defaults = {
 	url: _entryURL,
 	headers: {
-		'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible;) Safari/537.36.'
+		'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
 	}
 };
 
-request(defaults).then(function(response) {
+function callback(error, response, body) {
+	// if necessary
+}
+
+
+
+request(defaults, callback).then(function(response) {
 		let $ = cheerio.load(response, {
 			decodeEntities: false
 		});

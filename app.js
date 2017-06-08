@@ -61,7 +61,7 @@ WebCrawler = {
 			directory: siteFullPath,
 			request: {
 				headers: {
-					userAgent: config.agents.list[agent].userAgent
+					 'User-Agent': config.agents.list[agent].userAgent
 				}
 			},
 			siteDirname: siteDirname,
