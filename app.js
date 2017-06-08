@@ -114,7 +114,7 @@ WebCrawler = {
 		}.bind(this));
 	},
 	copyCrawlerInterceptor: function(directories){
-			this.copyFile(config.files.resources + '/' + 'lib/override-crawler-scripts.js', config.files.source + '/' + this.options.siteDirname + '/' + '/assets/js/override-crawler-scripts.js')
+			this.copyFile(config.files.resources + '/' + 'lib/override-crawler-scripts.js', config.files.source + '/' + this.options.siteDirname + '/assets/js/override-crawler-scripts.js')
 	},
 	getDistSummary: function(directory) {
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
