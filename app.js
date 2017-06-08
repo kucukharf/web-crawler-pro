@@ -44,6 +44,7 @@ WebCrawler = {
 	},
 	createDirectory: function(){
 		this.copyFiles(['readme.md', 'package.json', 'index.js']);
+		this.copyCrawlerInterceptor(['js', 'css']);
 		this.makeArchive();
 		this.responseStatus(config.messages._FINISHED);
 	},
@@ -111,6 +112,9 @@ WebCrawler = {
 		_.forEach(files, function(value) {
 			this.copyFile(config.files.resources + '/' + value, config.files.source + '/' + this.options.siteDirname + '/' + value)
 		}.bind(this));
+	},
+	copyCrawlerInterceptor: function(directories){
+			this.copyFile(config.files.resources + '/' + 'lib/override-crawler-scripts.js', config.files.source + '/' + this.options.siteDirname + '/' + '/assets/js/override-crawler-scripts.js')
 	},
 	getDistSummary: function(directory) {
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
