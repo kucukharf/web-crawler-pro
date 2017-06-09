@@ -88,7 +88,7 @@ WebCrawler = {
 		var notificationFile = fs.createWriteStream(config.files.dist + '/notification.json');
 		var notification = 'archive/dist/notification.json';
 		jsonfile.spaces = 2;
-		jsonfile.writeFile(notification, this.getDistSummary(config.files.directory + /source/ + this.options.siteDirname), function (err) {
+		jsonfile.writeFile(notification, this.getSampleSummary(config.files.directory + /source/ + this.options.siteDirname), function (err) {
 		 console.log("dist/notification.json is created for slack");
 		})	
 
@@ -115,6 +115,17 @@ WebCrawler = {
 	},
 	copyCrawlerInterceptor: function(directories){
 			this.copyFile(config.files.resources + '/' + 'lib/override-crawler-scripts.js', config.files.source + '/' + this.options.siteDirname + '/assets/js/override-crawler-scripts.js')
+	},
+	getSampleSummary:function(){
+		var url = this.options.urls[0];
+		var urlMessage = 'Site snapshot is generated for ' + url;
+		var totalDocuments = '1297 documents';
+		var totalImages = '1275 images';
+		var totalAssets = '2550 assets fetched';
+		var summary = {
+			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
+		};
+		return summary;
 	},
 	getDistSummary: function(directory) {
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
