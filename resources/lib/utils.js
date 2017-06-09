@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash');
 var domains = require('../../config/domains');
 var extracted = require('../../config/extracted');
@@ -28,7 +30,7 @@ module.exports = {
 	},
 	checkDomainState: function(_url) {
 		var urlInfo = domainParser(_url);
-		domainStatus = (_.findIndex(domains.whitelist, urlInfo) || _.findIndex(domains.whitelist, urlInfo)) > -1 ? true : false;
+		var domainStatus = (_.findIndex(domains.whitelist, urlInfo) || _.findIndex(domains.whitelist, urlInfo)) > -1 ? true : false;
 		return domainStatus;
 	},
 	generatePathList: function(list) {

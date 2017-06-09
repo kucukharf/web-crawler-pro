@@ -1,15 +1,17 @@
-var _crawler				 = require('./app'),
-	config					 = require('./config/index'),
-	_						 = require('lodash'),
-	lib						 = require('./resources/lib'),
-	axios					 = require('axios'),
-	cheerio					 = require('cheerio'),
-	request					 = require('request-promise'),
-	_entryURL				 = process.env.npm_config_url || false;
-_entryURL					 = process.env.npm_config_url || false;
-_entryOPT_recursive			 = process.env.npm_config_recursive ? process.env.npm_config_recursive : false;
-_entryOPT_maxRecursiveDepth	 = process.env.npm_config_maxRecursiveDepth ? process.env.npm_config_maxRecursiveDepth : 4;
-_entryOPT_maxDepth			 = process.env.npm_config_maxDepth ? process.env.npm_config_maxDepth : 4;
+'use strict';
+
+var _crawler					 = require('./app'),
+	config					 	 = require('./config/index'),
+	_						 	 = require('lodash'),
+	lib						 	 = require('./resources/lib'),
+	axios					 	 = require('axios'),
+	cheerio					 	 = require('cheerio'),
+	request					 	 = require('request-promise'),
+	_entryURL				 	 = process.env.npm_config_url || false;
+var _entryURL					 = process.env.npm_config_url || false;
+var _entryOPT_recursive			 = process.env.npm_config_recursive ? process.env.npm_config_recursive : false;
+var _entryOPT_maxRecursiveDepth	 = process.env.npm_config_maxRecursiveDepth ? process.env.npm_config_maxRecursiveDepth : 4;
+var _entryOPT_maxDepth			 = process.env.npm_config_maxDepth ? process.env.npm_config_maxDepth : 4;
 
 var _entryOptions = {
 	recursive: _entryOPT_recursive,

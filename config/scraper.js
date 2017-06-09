@@ -1,3 +1,5 @@
+'use strict';
+
 var lib             = require('../resources/lib');
 var chalk           = require('chalk');
 
@@ -38,7 +40,7 @@ module.exports = {
   }
   },
   urlFilter: function(_url){
-    urlState = lib.utils.checkUrlState(_url);
+    var urlState = lib.utils.checkUrlState(_url);
     urlState ? console.log(chalk.green.bold(_url) + ' . ',chalk.green.bold(urlState)) : console.log(_url + ' . ',chalk.red(urlState));
     return urlState;
   }

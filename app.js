@@ -1,3 +1,5 @@
+'use strict';
+
 var _ = require('lodash'),
 	Promise = require('bluebird'),
 	URL = require('url'),
@@ -5,6 +7,7 @@ var _ = require('lodash'),
 	path = require('path'),
 	validUrl = require('valid-url'),
 	scraper = require('./lib'),
+	fse = require('fs-extra'),
 	timestamp = require('time-stamp'),
 	lib    = require('./resources/lib'),
 	format = require('string-template'),
@@ -15,7 +18,7 @@ var _ = require('lodash'),
 	jsonfile = require('jsonfile'),
 	existsSync = fs.existsSync || path.existsSync;
 
-WebCrawler = {
+var WebCrawler = {
 	_init: function(url, options) {
 		this.resetFolders();
 		this.setPreOptions(url);
@@ -45,7 +48,7 @@ WebCrawler = {
 	createDirectory: function(){
 		this.copyFiles(['readme.md', 'package.json', 'index.js']);
 		this.copyCrawlerInterceptor(['js', 'css']);
-		this.makeArchive();
+		//this.makeArchive();
 		this.responseStatus(config.messages._FINISHED);
 	},
 	_setDefaultOptions: function(url, options) {
@@ -77,13 +80,13 @@ WebCrawler = {
 	},
 	getSiteDirname: function(siteUrl) {
 		var urlObj = URL.parse(siteUrl);
-		pathIdentifier = urlObj.pathname === '/' ?  '' : urlObj.pathname.replace(/\//g, '-')
+		var pathIdentifier = urlObj.pathname === '/' ?  '' : urlObj.pathname.replace(/\//g, '-')
 		var domain = urlObj.host + pathIdentifier;
 		//@timestamp pattern(YYYY MM DD HH mm ss ms) :  >>> example : '2015_04_01-19:52:33:738'
 		return domain + '-' + timestamp('YYYY_MM_DD-HH:mm:ss:ms');
 	},
 	makeArchive: function() {
-		_self = this;
+		var _self = this;
 		var output = fs.createWriteStream(config.files.dist + '/' + this.options.siteDirname + '.zip');
 		var notificationFile = fs.createWriteStream(config.files.dist + '/notification.json');
 		var notification = 'archive/dist/notification.json';
@@ -114,7 +117,12 @@ WebCrawler = {
 		}.bind(this));
 	},
 	copyCrawlerInterceptor: function(directories){
-			this.copyFile(config.files.resources + '/' + 'lib/override-crawler-scripts.js', config.files.source + '/' + this.options.siteDirname + '/assets/js/override-crawler-scripts.js')
+		_.each(directories, function(directory){
+			var source = 'resources/overrides/' + directory;
+			var target = 'archive/source/' + this.options.siteDirname + '/assets/' + directory;
+			fse.copySync(source, target)
+		}.bind(this))
+		console.log('overrided files are copied into dist!')
 	},
 	getSampleSummary:function(){
 		var url = this.options.urls[0];

@@ -75,6 +75,13 @@ module.exports = {
         },
         {
             "active": true,
+            "path": [
+                'static-assets',
+                'fonts'
+            ]
+        },
+        {
+            "active": true,
             "path": [ 'sonyglobal', 'Bootstrap.js' ]
         },
         {
