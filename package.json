@@ -53,8 +53,8 @@
   "scripts": {
     "clean": "node clean.js",
     "req": "node testReq.js",
-    "crawl-wl": "export DEBUG=website-scraper*; node --max_old_space_size=8192 --optimize_for_size --max_executable_size=8192 --stack_size=8192 index.js",
-    "crawl": " node --max_old_space_size=8192 --trace_gc --trace_gc_verbose --trace_gc_nvp --optimize_for_size --max_executable_size=8192 --stack_size=8192 index.js",
+    "crawl-wl": "export DEBUG=website-scraper*; node --trace_gc --trace_gc_verbose --trace_gc_nvp --max_old_space_size=8192 --optimize_for_size --max_executable_size=8192 --stack_size=8192 index.js",
+    "crawl": " node --max_old_space_size=8192 --optimize_for_size --max_executable_size=8192 --stack_size=8192 index.js",
     "eslint": "eslint lib/** index.js",
     "start": "node index.js",
     "test": "istanbul cover node_modules/mocha/bin/_mocha --dir ./coverage --report lcov -- -R spec --recursive --timeout 7000 ./test/unit/ ./test/functional && npm run eslint",
