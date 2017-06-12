@@ -48,7 +48,7 @@ var WebCrawler = {
 	createDirectory: function(){
 		this.copyFiles(['readme.md', 'package.json', 'index.js']);
 		this.copyCrawlerInterceptor(['js', 'css']);
-		//this.makeArchive();
+		this.makeArchive();
 		this.responseStatus(config.messages._FINISHED);
 	},
 	_setDefaultOptions: function(url, options) {
