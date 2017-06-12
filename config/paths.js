@@ -393,6 +393,10 @@ module.exports = {
         {
             path: ['locale-selector'],
             active: true
+        },
+        {
+            path: ['en_us', 'SCA'],
+            active: true
         }
     ]
 }
