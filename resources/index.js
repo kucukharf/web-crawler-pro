@@ -12,7 +12,7 @@ var finalScriptInterceptor = interceptor(function(req, res){
     intercept: function(body, send) {
       var $document = cheerio.load(body);
       $document('head').append('<script type="text/javascript" src="/assets/js/override-crawler-scripts.js"></script>');
-      $document('body').apend('<script type="text/javascript" src="/assets/js/override-crawler-scripts.js"></script>');
+      $document('body').append('<script type="text/javascript" src="/assets/js/override-crawler-scripts.js"></script>');
       send($document.html());
     }
   };
