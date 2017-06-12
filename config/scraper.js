@@ -7,9 +7,9 @@ module.exports = {
   prettifyUrls: true,
   filenameGenerator: 'byType',
   sources:[
-    {selector: '.hero-img', attr: 'data-src-desktop-highres', type:'imgSet'},
-    {selector: '.st-image', attr: 'data-src-desktop-highres', type:'imgSet'},
-    {selector: '.iq-img', attr: 'data-src-desktop-highres', type:'imgSet'},
+    {selector: '.hero-img', attr: 'data-src-tablet', type:'imgSet'},
+    {selector: '.st-image', attr: 'data-src-tablet', type:'imgSet'},
+    {selector: '.iq-img', attr: 'data-src-tablet', type:'imgSet'},
     {selector: 'img.product-logo-overlay', attr:'src'},
     {selector: 'link[rel="stylesheet"]', attr: 'href'},
     {selector: 'a.product-link-to-pdp', attr: 'href'},
