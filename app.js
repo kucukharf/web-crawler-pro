@@ -91,7 +91,7 @@ var WebCrawler = {
 		var notificationFile = fs.createWriteStream(config.files.dist + '/notification.json');
 		var notification = 'archive/dist/notification.json';
 		jsonfile.spaces = 2;
-		jsonfile.writeFile(notification, this.getSampleSummary(config.files.directory + /source/ + this.options.siteDirname), function (err) {
+		jsonfile.writeFile(notification, this.getDistSummary(config.files.directory + /source/ + this.options.siteDirname), function (err) {
 		 console.log("dist/notification.json is created for slack");
 		})	
 
