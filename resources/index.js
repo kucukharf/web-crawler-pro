@@ -1,9 +1,9 @@
 var express     = require('express');
 var cheerio     = require('cheerio');
 var interceptor = require('express-interceptor');
- 
-var app = express();
- 
+var open        = require("open");
+var app         = express();
+var port        = 3000;
 var finalScriptInterceptor = interceptor(function(req, res){
   return {
     isInterceptable: function(){
@@ -18,7 +18,9 @@ var finalScriptInterceptor = interceptor(function(req, res){
   };
 })
  
+
 app.use(finalScriptInterceptor); 
 app.use(express.static(__dirname));
 
-app.listen(3000);
+app.listen(port);
+open("http://localhost:"+ port);

@@ -7,9 +7,9 @@ module.exports = {
   prettifyUrls: true,
   filenameGenerator: 'byType',
   sources:[
-    {selector: '.hero-img', attr: 'data-src-tablet', type:'imgSet'},
-    {selector: '.st-image', attr: 'data-src-tablet', type:'imgSet'},
-    {selector: '.iq-img', attr: 'data-src-tablet', type:'imgSet'},
+    {selector: '.hero-img', attr: 'data-src-desktop', type:'imgSet'},
+    {selector: '.st-image', attr: 'data-src-desktop', type:'imgSet'},
+    {selector: '.iq-img', attr: 'data-src-desktop', type:'imgSet'},
     {selector: 'img.product-logo-overlay', attr:'src'},
     {selector: 'link[rel="stylesheet"]', attr: 'href'},
     {selector: 'a.product-link-to-pdp', attr: 'href'},
@@ -17,7 +17,7 @@ module.exports = {
     {selector: 'button.tab', attr:'data-tab-url'}
   ],
   subdirectories: [
-    {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.pjpeg','.png-alpha','.jpeg', '.webp']},
+    {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.gif','.pjpeg','.png-alpha','.jpeg', '.webp']},
     {directory: 'assets/js', extensions: ['.js']},
     {directory: 'assets/css', extensions: ['.css']},
     {directory: 'assets/others', extensions: ['.cur']},

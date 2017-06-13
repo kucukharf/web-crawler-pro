@@ -11,7 +11,8 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.1",
     "express": "^4.15.3",
-    "express-interceptor": "^1.2.0"
+    "express-interceptor": "^1.2.0",
+    "open": "0.0.5"
   },
   "author": "Burak Arslan",
   "license": "MIT"
