@@ -164,7 +164,7 @@ var WebCrawler = {
 		var urlMessage = 'Site snapshot is generated for ' + url;
 		var totalDocuments = reportGroups.documents.total + ' documents';
 		var totalImages = reportGroups.images.total + ' images';
-		var totalAssets = reportGroups.images.total + reportGroups.images.total + ' assets fetched';
+		var totalAssets = reportGroups.documents.total + reportGroups.images.total + ' assets fetched';
 		var summary = {
 			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
 		};
