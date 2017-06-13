@@ -136,7 +136,7 @@ var WebCrawler = {
 		return summary;
 	},
 	getDistSummary: function(directory) {
-		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
+		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'gif', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];
 		var files = {};
 		_.each(extensions, function(type) {
 			files[type] = glob.sync(directory + '/**/*.' + type, null);
@@ -144,13 +144,17 @@ var WebCrawler = {
 		});
 		var reportGroups = {
 			documents: {
-				types: ['html', 'js', 'css', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'cur'],
+				types: ['html'],
 				total: null
 			},
 			images: {
-				types: ['webp', 'png', 'jpg', 'jpeg', 'svg', 'pjpeg', 'png-alpha'],
+				types: ['webp', 'png', 'jpg', 'jpeg', 'svg', 'gif', 'pjpeg', 'png-alpha'],
 				total: null
 			},
+			assets: {
+				types:['js', 'css', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'cur','svg'],
+				total: null
+			}
 		}
 		var total = {};
 		_.each(reportGroups, function(group) {
@@ -161,10 +165,11 @@ var WebCrawler = {
 			group.total = total;
 		});
 		var url = this.options.urls[0];
-		var urlMessage = 'Site snapshot is generated for ' + url;
-		var totalDocuments = reportGroups.documents.total + ' documents';
-		var totalImages = reportGroups.images.total + ' images';
-		var totalAssets = reportGroups.documents.total + reportGroups.images.total + ' assets fetched';
+		var urlMessage 		= 'Site snapshot is generated for ' + url;
+		var totalDocuments 	= reportGroups.documents.total + ' documents';
+		var totalImages 	= reportGroups.images.total + ' images';
+		var totalAssets 	= reportGroups.assets.total + ' assets fetched';
+		
 		var summary = {
 			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
 		};
