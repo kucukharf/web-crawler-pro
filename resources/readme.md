@@ -1,6 +1,6 @@
 # Installation
 
--	Node should be exist on your computer, 
+-	Node < v6.4 should be exist on your computer, 
 to install the node [click here](https://nodejs.org/en/).
 
 -	Unzip generatod snapshot file.
