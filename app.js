@@ -46,8 +46,8 @@ var WebCrawler = {
 		}
 	},
 	createDirectory: function(){
-		this.copyFiles(['readme.md', 'package.json', 'index.js']);
 		this.copyCrawlerInterceptor(['js', 'css']);
+		this.copyFiles(['readme.md', 'package.json', 'index.js']);
 		this.makeArchive();
 		this.responseStatus(config.messages._FINISHED);
 	},
@@ -119,21 +119,10 @@ var WebCrawler = {
 	copyCrawlerInterceptor: function(directories){
 		_.each(directories, function(directory){
 			var source = 'resources/overrides/' + directory;
-			var target = 'archive/source/' + this.options.siteDirname + '/assets/' + directory;
+			var target = 'archive/source/' + this.options.siteDirname + '/public/assets/' + directory;
 			fse.copySync(source, target)
 		}.bind(this))
 		console.log('overrided files are copied into dist!')
-	},
-	getSampleSummary:function(){
-		var url = this.options.urls[0];
-		var urlMessage = 'Site snapshot is generated for ' + url;
-		var totalDocuments = '1297 documents';
-		var totalImages = '1275 images';
-		var totalAssets = '2550 assets fetched';
-		var summary = {
-			messages:[urlMessage,totalDocuments,totalImages,totalAssets]
-		};
-		return summary;
 	},
 	getDistSummary: function(directory) {
 		var extensions = ['js', 'css', 'html', 'png', 'jpg', 'jpeg', 'pjpeg', 'gif', 'png-alpha', 'webp', 'woff', 'ttf', 'eot', 'woff2', 'otf', 'svg', 'cur'];

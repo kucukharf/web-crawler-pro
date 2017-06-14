@@ -17,11 +17,14 @@ module.exports = {
     {selector: 'button.tab', attr:'data-tab-url'}
   ],
   subdirectories: [
-    {directory: 'assets/images', extensions: ['.jpg', '.png', '.svg','.gif','.pjpeg','.png-alpha','.jpeg', '.webp']},
-    {directory: 'assets/js', extensions: ['.js']},
-    {directory: 'assets/css', extensions: ['.css']},
-    {directory: 'assets/others', extensions: ['.cur']},
-    {directory: 'assets/fonts', extensions: ['.woff','.ttf','.eot', '.woff2', '.otf', '.svg']}
+    {directory: 'public/assets/images', extensions: ['.jpg', '.png', '.svg','.gif','.pjpeg','.png-alpha','.jpeg', '.webp']},
+    {directory: 'public/assets/js', extensions: ['.js']},
+    {directory: 'public', extensions: ['.html']},
+    {directory: 'public/assets/css', extensions: ['.css']},
+    {directory: 'public/assets/others', extensions: ['.pdf']},
+    {directory: 'public/assets/others', extensions: ['.json']},
+    {directory: 'public/assets/others', extensions: ['.cur']},
+    {directory: 'public/assets/fonts', extensions: ['.woff','.ttf','.eot', '.woff2', '.otf', '.svg']}
   ],
   httpResponseHandler: (response) => {
     if (response.statusCode === 404) {

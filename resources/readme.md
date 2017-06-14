@@ -22,5 +22,6 @@ you should run `npm run open`
 
 
 ## Information
-
+- 	Please do not use browser back and forward button to navigate, 
+stick with in-page links such as (breadcrumb, eyebrow, navigation menu, links and etc..)
 -	Please contact with GWT if you have any questions or need support.

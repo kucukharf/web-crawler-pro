@@ -20,7 +20,7 @@ var finalScriptInterceptor = interceptor(function(req, res){
  
 
 app.use(finalScriptInterceptor); 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 
 app.listen(port);
 open("http://localhost:"+ port);
