@@ -7,14 +7,12 @@ module.exports = {
   prettifyUrls: true,
   filenameGenerator: 'byType',
   sources:[
-    {selector: '.hero-img', attr: 'data-src-desktop', type:'imgSet'},
-    {selector: '.st-image', attr: 'data-src-desktop', type:'imgSet'},
-    {selector: '.iq-img', attr: 'data-src-desktop', type:'imgSet'},
-    {selector: 'img.product-logo-overlay', attr:'src'},
+    {selector: '.home-full-block', attr: 'style', type:'imgSet'},
+    {selector: '.latest-news-block', attr: 'style', type:'imgSet'},
+    {selector: '.block', attr: 'style', type:'imgSet'},
     {selector: 'link[rel="stylesheet"]', attr: 'href'},
-    {selector: 'a.product-link-to-pdp', attr: 'href'},
-    {selector: 'script', attr: 'src'},
-    {selector: 'button.tab', attr:'data-tab-url'}
+    {selector: 'img', attr:'src'},
+    {selector: 'script', attr: 'src'}
   ],
   subdirectories: [
     {directory: 'public/assets/images', extensions: ['.jpg', '.png', '.svg','.gif','.pjpeg','.png-alpha','.jpeg', '.webp']},
